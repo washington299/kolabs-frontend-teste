@@ -1,10 +1,17 @@
+import { Root } from "types";
+
 import { SearchField } from "components/SearchField";
 import { Sidebar } from "components/Sidebar";
+import { CardsList } from "components/CardsList";
 
 import * as GE from "styles/globalElements";
 import * as S from "./styles";
 
-export const HomeTemplate = () => {
+type HomeTemplateProps = {
+	list: Root;
+};
+
+export const HomeTemplate = ({ list }: HomeTemplateProps) => {
 	return (
 		<GE.Container>
 			<S.Content>
@@ -12,7 +19,7 @@ export const HomeTemplate = () => {
 
 				<S.Wrapper>
 					<Sidebar />
-					<div>HomeTemplate</div>
+					<CardsList list={list.results || []} />
 				</S.Wrapper>
 			</S.Content>
 		</GE.Container>
