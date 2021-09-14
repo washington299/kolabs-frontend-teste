@@ -17,6 +17,7 @@ export default createGlobalStyle`
 		--primary-color: #59BFFF;
 		--secondary-color: #dddddd;
 		--tertiary-color: #333333;
+		--quartenary-color: #aaaaaa;
 
 		--extra-small-size: 0.5rem;
 		--small-size: 1rem;
