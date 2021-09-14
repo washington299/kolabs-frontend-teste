@@ -1,4 +1,5 @@
 import { SearchField } from "components/SearchField";
+import { Sidebar } from "components/Sidebar";
 
 import * as GE from "styles/globalElements";
 import * as S from "./styles";
@@ -8,7 +9,11 @@ export const HomeTemplate = () => {
 		<GE.Container>
 			<S.Content>
 				<SearchField />
-				<h1>HomeTemplate</h1>
+
+				<S.Wrapper>
+					<Sidebar />
+					<div>HomeTemplate</div>
+				</S.Wrapper>
 			</S.Content>
 		</GE.Container>
 	);
