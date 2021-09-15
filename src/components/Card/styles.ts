@@ -16,6 +16,7 @@ export const CardData = styled.div`
 	}
 	.card__date {
 		font-size: 14px;
+		color: var(--quartenary-color);
 	}
 	.card__overview {
 		margin-top: var(--extra-small-size);
