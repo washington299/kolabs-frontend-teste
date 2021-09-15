@@ -8,4 +8,8 @@ export const Wrapper = styled.div`
 	display: flex;
 
 	margin-top: var(--medium-size);
+
+	@media screen and (max-width: 768px) {
+		flex-direction: column;
+	}
 `;

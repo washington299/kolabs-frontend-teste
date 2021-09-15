@@ -4,6 +4,12 @@ export const Wrapper = styled.div`
 	width: 250px;
 
 	margin-right: var(--small-size);
+
+	@media screen and (max-width: 768px) {
+		width: 100%;
+
+		margin-bottom: var(--extra-large-size);
+	}
 `;
 
 export const FilterArea = styled.aside`
