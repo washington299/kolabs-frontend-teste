@@ -27,14 +27,16 @@ export const Card = ({
 			<img
 				src={backdrop_path ? `https://image.tmdb.org/t/p/w200${backdrop_path}` : defaultImage}
 				alt={overview}
-				width={100}
+				width={120}
 				height={150}
 			/>
 
 			<S.CardData>
 				<h1 className="card__title">{name || title}</h1>
 				<p className="card__date">{parseDate(first_air_date) || parseDate(release_date)}</p>
-				<p className="card__overview">{`${overview.substring(0, 145)}${overview && "..."}`}</p>
+				{overview && (
+					<p className="card__overview">{`${overview.substring(0, 145)}${overview && "..."}`}</p>
+				)}
 			</S.CardData>
 		</S.Wrapper>
 	);

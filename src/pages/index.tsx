@@ -29,8 +29,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
 	const category = query?.category || "multi";
 	const word = query?.search || "";
+	const page = query?.page || "1";
 
-	const { data } = await queries.getAllResults(category, word);
+	const { data } = await queries.getAllResults(category, word, page);
 
 	return {
 		props: {

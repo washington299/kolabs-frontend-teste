@@ -19,7 +19,7 @@ export const HomeTemplate = ({ list }: HomeTemplateProps) => {
 
 				<S.Wrapper>
 					<Sidebar />
-					<CardsList list={list.results || []} />
+					<CardsList list={list} />
 				</S.Wrapper>
 			</S.Content>
 		</GE.Container>
