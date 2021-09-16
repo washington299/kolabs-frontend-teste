@@ -6,6 +6,7 @@ export const Wrapper = styled.article`
 	margin-bottom: var(--medium-size);
 	border-radius: var(--extra-small-size);
 	box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
+	cursor: pointer;
 
 	@media screen and (max-width: 768px) {
 		flex-direction: column;

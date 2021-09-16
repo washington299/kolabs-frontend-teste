@@ -10,6 +10,7 @@ type CardProps = {
 	first_air_date?: string;
 	release_date?: string;
 	overview: string;
+	handleModalClick: () => void;
 };
 
 export const Card = ({
@@ -19,11 +20,12 @@ export const Card = ({
 	first_air_date,
 	release_date,
 	overview,
+	handleModalClick,
 }: CardProps) => {
 	const defaultImage = "https://mrconfeccoes.com.br/wp-content/uploads/2018/03/default.jpg";
 
 	return (
-		<S.Wrapper>
+		<S.Wrapper onClick={handleModalClick}>
 			<img
 				src={backdrop_path ? `https://image.tmdb.org/t/p/w200${backdrop_path}` : defaultImage}
 				alt={overview}
