@@ -19,20 +19,18 @@ export const CardsList = ({ list }: CardsListProps) => {
 	const [modalOpen, setModalOpen] = useState(false);
 	const [cardInfo, setCardInfo] = useState<Result>({} as Result);
 
-	const history = useRouter();
+	const { query, push } = useRouter();
 
 	const handlePageChange = (data: { selected: number }) => {
 		const { selected } = data;
 
-		const { category, search } = history.query;
+		const { category, search } = query;
 
 		const categoryPath = category ? `category=${category}` : "";
 		const searchPath = search ? `search=${search}` : "";
 		const pagePath = `page=${selected + 1}`;
 
-		history.push(
-			`?${categoryPath && `${categoryPath}&`}${searchPath && `${searchPath}&`}${pagePath}`,
-		);
+		push(`?${categoryPath && `${categoryPath}&`}${searchPath && `${searchPath}&`}${pagePath}`);
 		setSelectedPage(selected + 1);
 	};
 
@@ -70,24 +68,26 @@ export const CardsList = ({ list }: CardsListProps) => {
 					/>
 				))}
 
-				<ReactPaginate
-					pageCount={list.total_pages}
-					previousLabel="anterior"
-					nextLabel="próximo"
-					marginPagesDisplayed={1}
-					pageRangeDisplayed={3}
-					onPageChange={data => handlePageChange(data)}
-					containerClassName="container"
-					pageClassName="page"
-					pageLinkClassName="pageLink"
-					activeClassName="active"
-					activeLinkClassName="activeLink"
-					previousClassName="previous"
-					nextClassName="next"
-					previousLinkClassName="previousLink"
-					nextLinkClassName="nextLink"
-					disabledClassName="disabled"
-				/>
+				{list.results.length > 0 && (
+					<ReactPaginate
+						pageCount={list.total_pages}
+						previousLabel="anterior"
+						nextLabel="próximo"
+						marginPagesDisplayed={1}
+						pageRangeDisplayed={3}
+						onPageChange={data => handlePageChange(data)}
+						containerClassName="container"
+						pageClassName="page"
+						pageLinkClassName="pageLink"
+						activeClassName="active"
+						activeLinkClassName="activeLink"
+						previousClassName="previous"
+						nextClassName="next"
+						previousLinkClassName="previousLink"
+						nextLinkClassName="nextLink"
+						disabledClassName="disabled"
+					/>
+				)}
 			</S.Wrapper>
 		</>
 	);
