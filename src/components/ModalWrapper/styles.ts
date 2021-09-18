@@ -5,6 +5,8 @@ export const Wrapper = styled.div`
 	justify-content: center;
 	align-items: center;
 
+	padding: 0 var(--medium-size);
+
 	position: fixed;
 	top: 0;
 	right: 0;
@@ -15,9 +17,12 @@ export const Wrapper = styled.div`
 `;
 
 export const ModalBox = styled.section`
+	max-width: 600px;
+	width: 100%;
+
 	position: relative;
 
-	padding: var(--large-size);
+	padding: var(--large-size) var(--small-size);
 	background-color: var(--white);
 
 	svg {
