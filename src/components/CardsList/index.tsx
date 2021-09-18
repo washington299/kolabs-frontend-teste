@@ -2,10 +2,11 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
 
-import { Root } from "types";
+import { Root, Result } from "types";
 
 import { Card } from "components/Card";
 import { ModalWrapper } from "components/ModalWrapper";
+import { ModalCard } from "components/ModalCard";
 
 import * as S from "./styles";
 
@@ -16,6 +17,7 @@ type CardsListProps = {
 export const CardsList = ({ list }: CardsListProps) => {
 	const [selectedPage, setSelectedPage] = useState(1);
 	const [modalOpen, setModalOpen] = useState(false);
+	const [cardInfo, setCardInfo] = useState<Result>({} as Result);
 
 	const history = useRouter();
 
@@ -34,36 +36,39 @@ export const CardsList = ({ list }: CardsListProps) => {
 		setSelectedPage(selected + 1);
 	};
 
-	const handleModalClick = () => {
-		setModalOpen(!modalOpen);
+	const openModal = (card: Result) => {
+		setCardInfo(card);
+		setModalOpen(true);
+	};
+
+	const closeModal = () => {
+		setModalOpen(false);
 	};
 
 	return (
 		<>
 			{modalOpen && (
-				<ModalWrapper handleModalClick={handleModalClick}>
-					<div>Modal</div>
+				<ModalWrapper handleModalClick={closeModal}>
+					<ModalCard cardInfo={cardInfo} />
 				</ModalWrapper>
 			)}
 
 			<S.Wrapper currentPage={list.page === selectedPage}>
 				{list.results.length === 0 && <S.NotFound>Nenhum item encontrado na busca.</S.NotFound>}
 
-				{list.results.map(
-					({ id, backdrop_path, name, title, release_date, first_air_date, overview }) => (
-						<Card
-							key={id}
-							id={id}
-							backdrop_path={backdrop_path}
-							name={name}
-							title={title}
-							release_date={release_date}
-							first_air_date={first_air_date}
-							overview={overview}
-							handleModalClick={handleModalClick}
-						/>
-					),
-				)}
+				{list.results.map(card => (
+					<Card
+						key={card.id}
+						id={card.id}
+						backdrop_path={card.backdrop_path}
+						name={card.name}
+						title={card.title}
+						release_date={card.release_date}
+						first_air_date={card.first_air_date}
+						overview={card.overview}
+						handleModalClick={() => openModal(card)}
+					/>
+				))}
 
 				<ReactPaginate
 					pageCount={list.total_pages}
