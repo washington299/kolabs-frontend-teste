@@ -9,15 +9,17 @@ export const SearchField = () => {
 
 	const { push } = useRouter();
 
-	const handleClick = () => {
+	const handleClick = (e: { preventDefault: () => void }) => {
+		e.preventDefault();
+
 		if (!value) return;
 
 		push(`?category=multi&search=${value}`);
 	};
 
 	return (
-		<S.InputWrapper>
-			<Search size={20} style={{ cursor: "pointer" }} onClick={handleClick} />
+		<S.InputWrapper onSubmit={handleClick}>
+			<Search size={20} style={{ cursor: "pointer" }} onClick={handleClick} type="submit" />
 			<S.Input placeholder="avengers" value={value} onChange={e => setValue(e.target.value)} />
 		</S.InputWrapper>
 	);
