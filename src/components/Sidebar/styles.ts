@@ -5,6 +5,18 @@ export const Wrapper = styled.div`
 
 	margin-right: var(--small-size);
 
+	.link {
+		display: block;
+		text-decoration: none;
+		text-align: center;
+
+		margin-top: var(--small-size);
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
 	@media screen and (max-width: 768px) {
 		width: 100%;
 

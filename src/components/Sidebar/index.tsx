@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { HelpWithCircle } from "styled-icons/entypo";
 
 import * as S from "./styles";
@@ -34,6 +35,10 @@ export const Sidebar = () => {
 				<br />
 				Exemplo: &apos;tropa de elite y: 2007&apos;.
 			</S.Tip>
+
+			<Link href="/historico">
+				<a className="link">histórico</a>
+			</Link>
 		</S.Wrapper>
 	);
 };
