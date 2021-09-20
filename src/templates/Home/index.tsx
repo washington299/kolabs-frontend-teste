@@ -1,3 +1,7 @@
+import { useEffect, useContext } from "react";
+
+import { ResultsContext } from "contexts/LastResults";
+
 import { Root } from "types";
 
 import { SearchField } from "components/SearchField";
@@ -12,6 +16,12 @@ type HomeTemplateProps = {
 };
 
 export const HomeTemplate = ({ list }: HomeTemplateProps) => {
+	const { dispatch } = useContext(ResultsContext);
+
+	useEffect(() => {
+		dispatch({ type: "ADD_RESULTS", payload: list.results });
+	}, [dispatch, list.results]);
+
 	return (
 		<GE.Container>
 			<S.Content>
