@@ -9,10 +9,22 @@ export type Action = {
 
 export const initialState: State = [];
 
+const removeDuplicates = (array: Result[]) => {
+	const seen = new Set();
+
+	return array.filter(el => {
+		const duplicate = seen.has(el.id);
+		seen.add(el.id);
+		return !duplicate;
+	});
+};
+
 export const resultsReducer = (state = initialState, action: Action) => {
 	switch (action.type) {
 		case "ADD_RESULTS":
-			return state.concat(action.payload);
+			state = state.concat(action.payload);
+
+			return removeDuplicates(state).sort().reverse();
 		default:
 			return state;
 	}
