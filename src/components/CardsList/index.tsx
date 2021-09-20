@@ -1,6 +1,8 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import ReactPaginate from "react-paginate";
+
+import { ResultsContext } from "contexts/LastResults";
 
 import { Root, Result } from "types";
 
@@ -18,6 +20,8 @@ export const CardsList = ({ list }: CardsListProps) => {
 	const [selectedPage, setSelectedPage] = useState(1);
 	const [modalOpen, setModalOpen] = useState(false);
 	const [cardInfo, setCardInfo] = useState<Result>({} as Result);
+
+	const { dispatch } = useContext(ResultsContext);
 
 	const { query, push } = useRouter();
 
@@ -42,6 +46,10 @@ export const CardsList = ({ list }: CardsListProps) => {
 	const closeModal = () => {
 		setModalOpen(false);
 	};
+
+	useEffect(() => {
+		dispatch({ type: "ADD_RESULTS", payload: list.results });
+	}, [dispatch, list.results]);
 
 	return (
 		<>
